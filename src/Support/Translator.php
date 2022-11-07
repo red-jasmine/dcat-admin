@@ -88,6 +88,9 @@ class Translator
         if ($this->translator->has($key)) {
             return $this->translator->$method($key, $replace, $locale);
         }
+        if ($this->translator->has('admin::' . $key)) {
+            return $this->translator->$method('admin::' . $key, $replace, $locale);
+        }
 
         if (
             mb_strpos($key, 'global.') !== 0
